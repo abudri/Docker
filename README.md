@@ -14,7 +14,7 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
     REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
     <none>                   <none>              5590e09e8948        4 seconds ago       109MB
 
-`docker build . -t day_2_project` - this actually builds the image of the `Dockerfile` with a tag using the `-t` flag.  Now when you run `docker image ls` after building the image,`REPOSITORY` and `TAG` will have `day_2_project` and `latest` - the default tag.
+`docker build . -t day_2_project` - this actually builds the image of the `Dockerfile` with a tag using the `-t` flag.  Now when you run the command `docker image ls` after building the image,`REPOSITORY` and `TAG` will have `day_2_project` and `latest` - the default tag.
 
     z@Mac-Users-Apple-Computer phase1 % docker image ls                
     REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE

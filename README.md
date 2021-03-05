@@ -51,6 +51,8 @@ After running the above command, you would be able to visit on local machine - s
 
 ## A Basic `Dockerfile`
 
-    FROM nginx:1.15
-    WORKDIR /usr/share/nginx/html
-    COPY index.html /usr/share/nginx/html
+```docker
+FROM nginx:1.15
+WORKDIR /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html
+```

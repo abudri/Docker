@@ -61,6 +61,16 @@ After running the above command, you would be able to visit on local machine - s
 
 `docker container rm -f <container_name>` - will remove your container even it is currently running.
 
+### `push`ing a Docker image to Docker Hub
+
+`docker login` - this is your username and password for Docker Hub. Do this if necessary.
+
+Tag your image first:
+
+`docker build . -t abdullahb/bunk_node_image` - and so now we have the `REPOSITORY` of `abdullahb`, my username, and then we called the image `bunk_node_image` (wasn't working exactly at this time.
+
+`docker push abdullahb/bunk_node_image` - push your image to docker hub. Now in Docker Hub you should have a repository called `bunk_node_image`, and under **Tags and Scans** you should see the `latest` tag. 
+
 ## `Dockerfile` Basics
 
 ### A Basic `Dockerfile`

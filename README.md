@@ -56,3 +56,9 @@ FROM nginx:1.15
 WORKDIR /usr/share/nginx/html
 COPY index.html /usr/share/nginx/html
 ```
+
+## Nuances / Extra Notes
+
+**`RUN` vs `CMD`**
+
+`RUN` and `CMD` are both Dockerfile instructions. `RUN` lets you execute commands inside of your Docker image. These commands get executed once at build time and get written into your Docker image as a new layer. ... `CMD` lets you define a default command to run when your container starts.

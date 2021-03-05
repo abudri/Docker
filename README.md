@@ -167,7 +167,7 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 
 **Common `Dockerfile` Commands - [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfile-cheat-sheet) / [Also](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)**
 
-**`FROM` -** Almost every Dockerfile begins with the `FROM` instruction that will set the Base Image for all subsequent instructions. The only argument that can come before `FROM` is `[ARG](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)` which can be used to declare a variable outside of the build stage, that can be later be used inside the build stage.
+**`FROM` -** Almost every Dockerfile begins with the `FROM` instruction that will set the Base Image for all subsequent instructions. The only argument that can come before `FROM` is [`ARG`](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact) which can be used to declare a variable outside of the build stage, that can be later be used inside the build stage.
 
 **`ENV` -** This command is the preferred way to inject keys and values into image building. All the variables set using this command can be used in the subsequent instructions in the build stage.
 

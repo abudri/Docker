@@ -175,11 +175,11 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 
 **`WORKDIR` -** The `WORKDIR` instruction sets the working directory for any `RUN`, `CMD`, `ENTRYPOINT`, `COPY` and `ADD` instructions that follow it in the Dockerfile. It is best practice to use `WORKDIR` to run commands that rely on being in a certain location in the file tree. The `WORKDIR` instruction can be also be used multiple times in a Dockerfile. If a relative path is provided, it will be relative to the path of the previous `WORKDIR` instruction.
 
+**`COPY` -** Will make a copy of the files in the first given location to the second given location.
+
 **`EXPOSE` -** Specify to the image which ports are going to be exposed within that image.
 
 **`CMD` -** This is the final command that will run every time you launch a new container from this image or restart a stopped container of this image.
-
-**`COPY` -** Will make a copy of the files in the first given location to the second given location.
 
 ## Nuances & Extra Notes
 

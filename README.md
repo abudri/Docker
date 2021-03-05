@@ -4,6 +4,8 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 
 ## Basic Docker Commands
 
+#### `image` Commands
+
 `docker image ls` - list your docker images
 
 `docker image rm <image_name>` - removes a docker image.
@@ -32,6 +34,9 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
                 "ExposedPorts": {
                     "80/tcp": {}
                 },
+
+
+#### `container` Commands
 
 `docker container run -d -p 80:80 day_2_project` - this builds and runs your container using the `day_2_project` image, and also runs it in detached mode with the `-d` flag so that you get your terminal prompt back, and using `-p` to publish the port.  When we were doing this command, the first port is the `<local_port>`, and the second port is the container port, `<container_port>`, or more verbosely,  `docker container run -d -p <local_port>:<container_port>`.
 

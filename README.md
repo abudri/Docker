@@ -63,7 +63,7 @@ WORKDIR /usr/share/nginx/html
 COPY index.html /usr/share/nginx/html
 ```
 
-## Nuances / Extra Notes
+## Nuances & Extra Notes
 
 **`RUN` vs `CMD`**
 

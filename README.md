@@ -1,5 +1,5 @@
 # Docker
-Mainly from App Academy Open Docker Curriculum
+Mainly from amazingly well put together App Academy Open [Docker Curriculum](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/)
 
 ## Basic Docker Commands
 

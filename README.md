@@ -194,6 +194,10 @@ dist/
 
 Nice! Looking more efficient already without all those node_modules taking up space in your image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
+### The `latest` Tag
+
+The `latest` tag will always be the default if no tag is specified. Say if we have in the `Dockerfile` the `FROM ubuntu` command, that instruction is equal to `FROM ubuntu:latest`. There is a problem with this: what if ubuntu releases a new version that your build isn't compatible with? So, unless it is your intention to a generic `Dockerfile` that must stay up-to-date with the base image, provide a specific tag, such as `FROM ubuntu:16.03`. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
+
 ## `Dockerfile` Commands
 
 **Common `Dockerfile` Commands - [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfile-cheat-sheet) / [Also](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)**

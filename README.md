@@ -194,9 +194,25 @@ dist/
 
 Nice! Looking more efficient already without all those node_modules taking up space in your image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
-### The `latest` Tag
+### Tags and the `latest` Tag
+
+A tag serves to map a descriptive, user-given name to any single image ID. An image name suffix (the name that comes after the `:`) is often referred to as a tag as well, though it strictly refers to the full name of an image. (Example: `node:8.15-alpine` the `8.15-alpine` is the version, then the tag for that version). Tag names should be limited to the set of alphanumeric characters `[a-z, A-Z, 0-9]` and punctuation characters `[._-]`. Tag names also **MUST NOT** contain a `:` character.
+
+The `latest` tag is the default tag applied when pulling or pushing an image. So if you pull down the `nginx` image (`docker pull nginx`) you are actually pulling down `nginx:latest` since you didn't specify a tag. The `latest` tag of an image is usually the most recent and stable version of an image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/docker-hub---pushing-and-pulling-images)
 
 The `latest` tag will always be the default if no tag is specified. Say if we have in the `Dockerfile` the `FROM ubuntu` command, that instruction is equal to `FROM ubuntu:latest`. There is a problem with this: what if ubuntu releases a new version that your build isn't compatible with? So, unless it is your intention to a generic `Dockerfile` that must stay up-to-date with the base image, provide a specific tag, such as `FROM ubuntu:16.03`. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
+
+### Using the Proper Base Image
+
+Say we had a `Dockerfile` for a Node app, so at the top of the `Dockerfile` we had `FROM ubuntu:16.03`.  If this is a Node app, why is ubuntu our base image? Do we really need a general-purpose base image, when we just want to run a node application? A Better option is to use a specialized image with node _already installed_. And while we are it let's use the alpine tagged version of node to make sure our image is as small as possible . Change the base image to node:10-alpine.
+
+Now that we have node installed remove all the apt-get lines that were originally installing node for you.
+
+Note: If we were to install any packages using the alpine distribution we would need to remember to use the alpine package system apk instead of apt-get
+
+### Note on `alpine` versions of images
+
+In general if you see an image has an `alpine` tag version available it means it is using the Linux distribution for `alpine` as it's base image. Alpine is a small security-focused distribution of Linux. Like super small, it's only about 5MB in size. The alpine version of images are popular for development because they use less memory. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/docker-hub---pushing-and-pulling-images)
 
 ## `Dockerfile` Commands
 

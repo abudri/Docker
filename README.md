@@ -7,7 +7,7 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 * [Basic Docker Commands](https://github.com/abudri/Docker/blob/main/README.md#basic-docker-commands)
 * [`Dockerfile` Basics](https://github.com/abudri/Docker/blob/main/README.md#dockerfile-basics)
 * [`Dockerfile` Commands](https://github.com/abudri/Docker/blob/main/README.md#dockerfile-commands)
-* [Nuances & Exta Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
+* [Nuances & Extra Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
 * [Best and Standard Practices](https://github.com/abudri/Docker/blob/main/README.md#best-and-standard-practices)
 
 

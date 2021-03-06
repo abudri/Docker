@@ -2,6 +2,15 @@
 
 Notes mainly from the amazingly well put together App Academy Open [Docker Curriculum](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/)
 
+## Table of Contents
+
+* [Basic Docker Commands](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
+* `Dockerfile` Basics
+* `Dockerfile` Commands
+* Nuances & Exta Notes
+* Best and Standard Practices
+
+
 ## Basic Docker Commands
 
 #### `image` Commands
@@ -173,7 +182,19 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 	&& ln -sf /dev/stderr /var/log/IMAGENNAME/error.log
 ```
 
-### `Dockerfile` Commands
+### `.dockerignore` File
+
+One of the first things you should do when you write a `Dockerfile` is to write a `.dockerignore`. Sounds familiar right? A .dockerignore file ignores the files you don't want to have in your Docker image. It's just like a `.gitignore` - and you can ignore the same sorts of things. For example your `.dockerignore` for this setup should be ignoring:
+
+```docker
+.git/
+node_modules/
+dist/
+```
+
+Nice! Looking more efficient already without all those node_modules taking up space in your image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
+
+## `Dockerfile` Commands
 
 **Common `Dockerfile` Commands - [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfile-cheat-sheet) / [Also](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)**
 
@@ -190,18 +211,6 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 **`EXPOSE` -** Specify to the image which ports are going to be exposed within that image.
 
 **`CMD` -** This is the final command that will run every time you launch a new container from this image or restart a stopped container of this image.
-
-### `.dockerignore` File
-
-One of the first things you should do when you write a `Dockerfile` is to write a `.dockerignore`. Sounds familiar right? A .dockerignore file ignores the files you don't want to have in your Docker image. It's just like a `.gitignore` - and you can ignore the same sorts of things. For example your `.dockerignore` for this setup should be ignoring:
-
-```docker
-.git/
-node_modules/
-dist/
-```
-
-Nice! Looking more efficient already without all those node_modules taking up space in your image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
 ## Nuances & Extra Notes
 

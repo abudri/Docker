@@ -163,7 +163,7 @@ Step 2 : RUN mkdir -p /usr/src/app
 
 Be wary though! If you make a change in a Dockerfile once it's been built, Docker will see that change and then will **no longer use the cache** of image layers it had. That's why it is always a good idea to put any layers that you intend to change as low in the Dockerfile as possible. That way the beginning of your Dockerfile will be able to use the cache until it hits your changes.
 
-### **Logging in Dockerfiles**
+### Logging in Dockerfiles
 
 Docker can handle all of our logging for us while building our images - we just need to tell it where to put those logs. You can use `stdout` and `stderr` by adding something like the following `RUN` command to your Dockerfile:
 
@@ -190,6 +190,18 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 **`EXPOSE` -** Specify to the image which ports are going to be exposed within that image.
 
 **`CMD` -** This is the final command that will run every time you launch a new container from this image or restart a stopped container of this image.
+
+### `.dockerignore` File
+
+One of the first things you should do when you write a Dockerfile is to write a .dockerignore. Sounds familiar right? A .dockerignore file ignores the files you don't want to have in your Docker image. It's just like a .gitignore - and you can ignore the same sorts of things. For example your .dockerignore for this setup should be ignoring:
+
+```docker
+.git/
+node_modules/
+dist/
+```
+
+Nice! Looking more efficient already without all those node_modules taking up space in your image. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
 ## Nuances & Extra Notes
 

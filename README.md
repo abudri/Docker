@@ -196,3 +196,9 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 **`RUN` vs `CMD`**
 
 `RUN` and `CMD` are both Dockerfile instructions. `RUN` lets you execute commands inside of your Docker image. These commands get executed once at build time and get written into your Docker image as a new layer. ... `CMD` lets you define a default command to run when your container starts. [Reference](https://nickjanetakis.com/blog/docker-tip-7-the-difference-between-run-and-cmd#:~:text=RUN%20and%20CMD%20are%20both,image%20as%20a%20new%20layer.&text=CMD%20lets%20you%20define%20a,run%20when%20your%20container%20starts.)
+
+**`RUN cd` vs `WORKDIR`**
+
+Each `RUN` command runs in a new shell and a new environment (and technically a new container, though you won't usually notice this). The `ENV` and `WORKDIR` directives before it affect how it starts up. If you have a `RUN` step that just changes directories, that will get lost when the shell exits, and the next step will start in the most recent `WORKDIR` of the image. [Stack Overflow Reference](https://stackoverflow.com/questions/58847410/difference-between-run-cd-and-workdir-in-dockerfile#:~:text=1%20Answer&text=RUN%20cd%20%2F%20does%20absolutely%20nothing,'t%20usually%20notice%20this).).
+
+

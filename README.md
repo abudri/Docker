@@ -204,11 +204,9 @@ The `latest` tag will always be the default if no tag is specified. Say if we ha
 
 ### Using the Proper Base Image
 
-Say we had a `Dockerfile` for a Node app, so at the top of the `Dockerfile` we had `FROM ubuntu:16.03`.  If this is a Node app, why is ubuntu our base image? Do we really need a general-purpose base image, when we just want to run a node application? A Better option is to use a specialized image with node _already installed_. And while we are it let's use the alpine tagged version of node to make sure our image is as small as possible . Change the base image to node:10-alpine.
+Say we had a `Dockerfile` for a Node app, so at the top of the `Dockerfile` we had `FROM ubuntu:16.03`.  If this is a Node app, why is ubuntu our base image? Do we really need a general-purpose base image, when we just want to run a node application? A Better option is to use a specialized image with node _already installed_. And while we are it let's use the alpine tagged version of node to make sure our image is as small as possible . You can change the base image as such using `node:10-alpine`.
 
-Now that we have node installed remove all the apt-get lines that were originally installing node for you.
-
-Note: If we were to install any packages using the alpine distribution we would need to remember to use the alpine package system apk instead of apt-get
+Note: If we were to install any packages using the alpine distribution we would need to remember to use the alpine package system `apk` instead of `apt-get`. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
 ### Note on `alpine` versions of images
 

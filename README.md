@@ -213,4 +213,15 @@ Nice! Looking more efficient already without all those node_modules taking up sp
 
 Each `RUN` command runs in a new shell and a new environment (and technically a new container, though you won't usually notice this). The `ENV` and `WORKDIR` directives before it affect how it starts up. If you have a `RUN` step that just changes directories, that will get lost when the shell exits, and the next step will start in the most recent `WORKDIR` of the image. [Stack Overflow Reference](https://stackoverflow.com/questions/58847410/difference-between-run-cd-and-workdir-in-dockerfile#:~:text=1%20Answer&text=RUN%20cd%20%2F%20does%20absolutely%20nothing,'t%20usually%20notice%20this).
 
+## Best and Standard Practices
+
+### A Container Should Do One Thing Only.
+Technically, you CAN start multiple processes inside a Docker container. You CAN put your database, frontend, backend, ssh, and supervisor all into one docker image. But this is not good practice because:
+
+1. Your build times will be long -remember every time something changes in a `Dockerfile` everything below that change won't be able to use the image cache.
+2. You image will be large and take a while to download and upload.
+3. Your container logs will be a mess with so much going on in one container
+4. Doesn't scale well at all.
+
+The list goes on! Docker's advice is to prepare separate Docker image for each component of your app. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 

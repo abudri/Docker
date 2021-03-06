@@ -205,13 +205,34 @@ Nice! Looking more efficient already without all those node_modules taking up sp
 
 ## Nuances & Extra Notes
 
-**`RUN` vs `CMD`**
+#### `RUN` vs `CMD`
 
 `RUN` and `CMD` are both Dockerfile instructions. `RUN` lets you execute commands inside of your Docker image. These commands get executed once at build time and get written into your Docker image as a new layer. ... `CMD` lets you define a default command to run when your container starts. [Reference](https://nickjanetakis.com/blog/docker-tip-7-the-difference-between-run-and-cmd#:~:text=RUN%20and%20CMD%20are%20both,image%20as%20a%20new%20layer.&text=CMD%20lets%20you%20define%20a,run%20when%20your%20container%20starts.)
 
-**`RUN cd` vs `WORKDIR`**
+#### `RUN cd` vs `WORKDIR`
 
 Each `RUN` command runs in a new shell and a new environment (and technically a new container, though you won't usually notice this). The `ENV` and `WORKDIR` directives before it affect how it starts up. If you have a `RUN` step that just changes directories, that will get lost when the shell exits, and the next step will start in the most recent `WORKDIR` of the image. [Stack Overflow Reference](https://stackoverflow.com/questions/58847410/difference-between-run-cd-and-workdir-in-dockerfile#:~:text=1%20Answer&text=RUN%20cd%20%2F%20does%20absolutely%20nothing,'t%20usually%20notice%20this).
+
+#### `ADD` vs `COPY`
+
+**`ADD`** - It includes the source you want to copy (<src>) followed by the destination where you want to store it (<dest>). If the source is a directory, `ADD` copies everything inside of it (including file system metadata). `ADD` can also copy files from a URL. It can download an external file and copy it to the wanted destination. For example:
+
+```docker
+ADD http://source.file/url  /destination/path
+```
+
+An additional feature is that it copies compressed files, automatically extracting the content in the given destination. This feature only applies to locally stored compressed files/directories. Type in the source and where you want the command to extract the content as follows:
+
+```docker
+ADD source.file.tar.gz /temp
+```
+
+**`COPY`** - Due to some functionality issues, Docker had to introduce an additional command for duplicating content – `COPY`. Unlike its closely related `ADD` command, `COPY` only has only one assigned function. Its role is to duplicate files/directories in a specified location in their existing format. This means that it doesn’t deal with extracting a compressed file, but rather copies it as-is. The instruction can be used only for locally stored files. Therefore, you cannot use it with URLs to copy external files to your container. To use the `COPY` instruction, follow the basic command format: `COPY <src> … <dest>`.  For example:
+
+```docker
+COPY /source/file/path  /destination/path 
+```
+[Reference](https://phoenixnap.com/kb/docker-add-vs-copy).  Also see [Stack Overflow Answer](https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile).
 
 ## Best and Standard Practices
 

@@ -193,7 +193,7 @@ RUN ln -sf /dev/stdout /var/log/IMAGENAME/access.log \
 
 ### `.dockerignore` File
 
-One of the first things you should do when you write a Dockerfile is to write a .dockerignore. Sounds familiar right? A .dockerignore file ignores the files you don't want to have in your Docker image. It's just like a .gitignore - and you can ignore the same sorts of things. For example your .dockerignore for this setup should be ignoring:
+One of the first things you should do when you write a `Dockerfile` is to write a `.dockerignore`. Sounds familiar right? A .dockerignore file ignores the files you don't want to have in your Docker image. It's just like a `.gitignore` - and you can ignore the same sorts of things. For example your `.dockerignore` for this setup should be ignoring:
 
 ```docker
 .git/

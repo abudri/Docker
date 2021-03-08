@@ -261,6 +261,10 @@ COPY /source/file/path  /destination/path
 ```
 [Reference](https://phoenixnap.com/kb/docker-add-vs-copy).  Also see [Stack Overflow Answer](https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile).
 
+Also from the [course](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore):
+
+Just like the title says - use `COPY` it's simpler. `ADD` has some logic for downloading remote files and extracting archives, which is most scenarios is more inefficient for what you need. Just stick with `COPY`.
+
 ## Best and Standard Practices
 
 ### A Container Should Do One Thing Only.

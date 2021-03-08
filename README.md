@@ -228,7 +228,14 @@ In general if you see an image has an `alpine` tag version available it means 
 
 **`EXPOSE` -** Specify to the image which ports are going to be exposed within that image.
 
-**`CMD` -** This is the final command that will run every time you launch a new container from this image or restart a stopped container of this image.
+**`CMD` -** This is the final command that will run every time you launch a new container from this image or restart a stopped container of this image. Also from [documentation](https://docs.docker.com/engine/reference/builder/#cmd):
+	The CMD instruction has three forms:
+	
+	CMD ["executable","param1","param2"] (exec form, this is the preferred form)
+	CMD ["param1","param2"] (as default parameters to ENTRYPOINT)
+	CMD command param1 param2 (shell form)
+	
+There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
 
 ## Nuances & Extra Notes
 

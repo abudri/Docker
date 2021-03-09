@@ -9,6 +9,7 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 * [`Dockerfile` Commands](https://github.com/abudri/Docker/blob/main/README.md#dockerfile-commands)
 * [Nuances & Extra Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
 * [Best and Standard Practices](https://github.com/abudri/Docker/blob/main/README.md#best-and-standard-practices)
+* [Multi-Stage Builds]()
 
 
 ## Basic CLI Docker Commands
@@ -284,3 +285,28 @@ Technically, you CAN start multiple processes inside a Docker container. You CAN
 
 The list goes on! Docker's advice is to prepare separate Docker image for each component of your app. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
 
+## Multi-Stage Builds
+
+Say we have a React/Redux application - strictly frontend. Meaning there is no server for rendering this application and we'll use nginx in order to see this app on localhost. So, we want to use node as a base image in order to bundle our React code, but we also want to use nginx as our server to show our code. We have two main concerns but we only want to build one image. One way we can get around this is by using ]multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/#name-your-build-stages). Once our code has been built using - for example, node - we don't actually require any node functionality anymore. So we can use the files that node built and hand them to nginx to replace the default html that nginx renders.
+
+In the `Dockerfile` you can start with the `FROM` command use a recent node version like `node:8.15-alpine` and name this stage of the build using `as`, for later reference:
+
+```docker
+FROM node:8.15-alpine as build-stage
+```
+
+Once you put in the lines in the above `Dockerfile` for copying over any necessary files, installing dependencies, running webpack, etc, you can do the multi-stage trick.  Next you'll want to create a second `FROM` with the `nginx` image, version `1.15`.  So you can have:
+
+```docker
+FROM nginx:1.15
+```
+
+Next is a normal COPY, but we'll add a `--from=build-stage`. That `build-stage` refers to the name we specified above in the `as build-stage`. Here, although we are in a Nginx image, starting from scratch, we can copy files from a previous stage. Copy over your `/app` folder into the place 'nginx' keeps its html information - `/usr/share/nginx/html`.
+
+For the last step we've provided you with a nginx.conf - this file will basically just take care of making sure all your files aren't overwritten by the nginx default configuration. Add this last line to your Dockerfile:
+
+```docker
+COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d/default.conf
+```
+
+[Reference](https://docs.docker.com/develop/develop-images/multistage-build/#name-your-build-stages) and from Stage 4 in this App Academy Day 2 [Project](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)

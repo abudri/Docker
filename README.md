@@ -10,7 +10,7 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 * [Nuances & Extra Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
 * [Best and Standard Practices](https://github.com/abudri/Docker/blob/main/README.md#best-and-standard-practices)
 * [Multi-Stage Builds](https://github.com/abudri/Docker/blob/main/README.md#multi-stage-builds)
-
+* [Docker Compose](https://github.com/abudri/Docker/blob/main/README.md#docker-compose)
 
 ## Basic CLI Docker Commands
 

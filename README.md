@@ -365,3 +365,8 @@ volumes: # Optional, same as docker volume create
 
 networks: # Optional, same as docker network create
 ```
+
+Check out [this](https://yaml.org/refcard.html) resource if you need reminder about YAML formatting.
+
+Also here is a great video on [YAML in One Video](https://www.youtube.com/watch?v=cdLNKUoMc6c).
+

@@ -366,7 +366,23 @@ volumes: # Optional, same as docker volume create
 networks: # Optional, same as docker network create
 ```
 
-Check out [this](https://yaml.org/refcard.html) resource if you need reminder about YAML formatting.
+Docker compose can setup containers, volumes and networks and environment variables all in one committable file that can be brought up with a single command.  You can build your entire full-stack application and bring it up with one command with docker compose. Some notes on each of the keys above:
+
+`version` - every `docker-compose.yml` file starts with a version like `version: '2'` . If you do not specify a version it will automatically use Docker Compose version `1`, which has less functionality, so you definitely want to specify a version.
+
+`services` - this is docker compose language for "these are the containers I will be running for you".  So think containers when you see the `services` key, meaning, "I will be making containers under this `services` key."
+
+`servicename` - this is actually generic and can be whatever you want to call it, `my_app`, etc. 
+
+`image` - Here you could have for example `image: redis` this container will be running the redis image. The redis service uses a public [Redis](https://registry.hub.docker.com/_/redis/) image pulled from the Docker Hub registry.  See this [reference](https://docs.docker.com/compose/gettingstarted/#step-3-define-services-in-a-compose-file) for the breakdown.
+
+`ports` - when you run the container you tell it what ports you want to expose and be running on the image
+
+`environment` - You can hand it the environment variables you want to be running with this container with the `environment` key.  
+
+`volumes` - you can also set up a bind mount in this container with `volumes`.
+
+Check out [this](https://yaml.org/refcard.html) resource if you need reminder about YAML formatting.  Note, YAML files can use both `.yml` and `.yaml` extensions.
 
 Also here is a great video on [YAML in One Video](https://www.youtube.com/watch?v=cdLNKUoMc6c).
 
@@ -382,7 +398,7 @@ One of the coolest things about Docker Compose is the intuitive CLI commands. Th
 2. `docker-compose up` - Which will setup your volumes, networks, and start the specified containers
 3. `docker-compose down` - Which will stop and remove all containers and networks.
 4. `docker-compose down -v` - Which will stop and remove all volumes, containers and networks.
-5. 
+
 No more giant multi-line container commands! No more removing containers by hand! Docker Compose cleans all that right up into simple single line commands. Imagine this: If all your projects had a Dockerfile and a `docker-compose.yml` all I'd have to do to run your project is:
 
 ```

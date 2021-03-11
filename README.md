@@ -372,6 +372,8 @@ Also here is a great video on [YAML in One Video](https://www.youtube.com/watch?
 
 ### Docker Compose CLI / Simple CLI Commands
 
+Note: Main source for this material is [Day 3](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/docker-compose) of App Academy Open Course.
+
 Before we start, if you haven't already, we recommend downloading the Docker Compose [Command-line completion](https://docs.docker.com/compose/completion/) especially while you are learning!
 
 One of the coolest things about Docker Compose is the intuitive CLI commands. There are a lot of similar commands between the `docker-compose` CLI and the `docker` CLI. Docker Compose basically takes over the role of the Docker CLI by talking to the Docker server API in the background for you. The main `docker-compose` commands to know are:

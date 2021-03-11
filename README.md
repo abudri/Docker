@@ -330,3 +330,38 @@ The most important features of Docker Compose are:
 3. Preservation of volume data when containers are created. - When `docker-compose up` runs, if it finds any containers from previous runs, it copies the volumes from the old container to the new container it is creating.
 4. Only recreate containers that have changed. - Compose caches the configuration used to create a container. When you restart a service and nothing has changed, Compose re-uses the existing containers.
 5. Compose allows you to use [variables](https://docs.docker.com/compose/compose-file/#variable-substitution) in the Compose file.
+
+### Docker Compose Composition
+
+When we say "Docker Compose" we are really referring to two things:
+
+1. A YAML formatted file - describing what is needed in terms of containers, networks, and volumes. This file is usually named `docker-compose.yml`.
+2. A CLI tool (`docker-compose`) which is primarily used for local development and testing which relies on the YAML file.
+3. 
+The first line of a `docker-compose.yml` file is the version of Compose you will be using. Docker Compose has gone through several iterations and there are a many available versions for you to use. We generally recommend using at least version `2` for your files. Though for certain features you many need to upgrade to a higher version. See a list of Docker Compose versions and features [here](https://docs.docker.com/compose/compose-file/compose-versioning/).
+
+Using Compose is basically a three-step process:
+
+1. Define your app’s environment with a `Dockerfile` so it can be reproduced anywhere.
+2. Define the `services` that make up your app in the `docker-compose.yml` so they can be run together in an isolated environment.
+3. Run 	docker-compose up` and Compose will start and run your entire app.
+
+When we are talking about Docker Compose the word `services` refers to running multiple containers. Below is a breakdown of the general way your file should be formatted:
+
+```yaml
+# If no version is specified then version 1.0 is assumed. 
+# Recommend version 2 at the minimum
+version: '3.1'  
+
+services:  # Will start up containers. Is the same as using docker container run.
+  servicename: # A Friendly name (postgres, node, etc.). This is also DNS name inside your network
+    image: # the image this service will use
+    command: # Optional, will replace the default CMD specified by the image
+    environment: # Optional, same as -e in docker container run
+    volumes: # Optional, same as -v in docker container run
+  psql: # servicename2
+
+volumes: # Optional, same as docker volume create
+
+networks: # Optional, same as docker network create
+```

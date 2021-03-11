@@ -310,3 +310,23 @@ COPY --from=build-stage /app/nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
 [Reference](https://docs.docker.com/develop/develop-images/multistage-build/#name-your-build-stages) and from Stage 4 in this App Academy Day 2 [Project](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/dockerfiles-galore)
+
+## Docker Compose
+
+After publishing images to Docker Hub, put them to good use. If you are tired of setting up individual Docker Containers and images, imagine a world where you could boot up and tear down multiple containers with a single command. That is the magic of Docker Compose.
+
+Docker Compose is a Python-based tool which according to Docker is, "a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration." With a single YAML file and a simple CLI you can use compose to set up all the networking, volumes, and containers you need to run an entire app.
+
+Docker Compose is excellent in running in automated testing and development environments. As a developer you'll be interacting with Docker Compose in order to speed up your development cycle. Docker Compose could also suitable for production...if you’re deploying to a single host. There is a reason Docker says, "Compose is great for development, testing, and staging environments". Docker Compose wasn't designed to be a production-grade tool. You can however use Compose with Docker Swarm if you are interested in using Compose in a production environment. Feel free to read up on Docker Swarm [here](https://docs.docker.com/compose/swarm/) if you are interested.
+
+If you installed Docker on either a Mac or Windows you should automatically have Docker Compose installed. If you are on a Linux machine check [here](https://github.com/docker/compose/releases) for installation instructions.
+
+### Compose Features
+
+The most important features of Docker Compose are:
+
+1. The Ability to Deploy Multiple Container Easily
+2. Automatic Configuration of a single network for your app: Each container for a service joins the created network and is reachable by all the other containers on that network by their service name.
+3. Preservation of volume data when containers are created. - When `docker-compose up` runs, if it finds any containers from previous runs, it copies the volumes from the old container to the new container it is creating.
+4. Only recreate containers that have changed. - Compose caches the configuration used to create a container. When you restart a service and nothing has changed, Compose re-uses the existing containers.
+5. Compose allows you to use [variables](https://docs.docker.com/compose/compose-file/#variable-substitution) in the Compose file.

@@ -421,3 +421,8 @@ Unlike docker-compose and docker-machine, docker swarm is not a standalone orche
 
 In order to create a swarm you need to ssh into a machine you intend to make into a swarm and `docker swarm init --advertise-addr <ip to publish>`. This command will make a machine accessible on `<ip to publish>`. Other docker hosts can now join the swarm on this IP. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
+## Glossary
+
+**Docker Hub** - is a service that provides a registry of docker images. We can store our images on the docker hub and pull images made by others for us to use. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
+**Docker Registry** - allows us to host our own private registry in case we don’t want to use an existing one. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)

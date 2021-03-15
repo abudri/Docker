@@ -10,7 +10,9 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 * [Nuances & Extra Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
 * [Best and Standard Practices](https://github.com/abudri/Docker/blob/main/README.md#best-and-standard-practices)
 * [Multi-Stage Builds](https://github.com/abudri/Docker/blob/main/README.md#multi-stage-builds)
+* [Anatomy of Docker Components]
 * [Docker Compose](https://github.com/abudri/Docker/blob/main/README.md#docker-compose)
+* [Glossary]
 
 ## Basic CLI Docker Commands
 
@@ -420,6 +422,12 @@ Docker swarm is another orchestration tool aimed to manage a cluster of docker h
 Unlike docker-compose and docker-machine, docker swarm is not a standalone orchestration software. Swarm mode is built in docker engine and is managed through Docker client.
 
 In order to create a swarm you need to ssh into a machine you intend to make into a swarm and `docker swarm init --advertise-addr <ip to publish>`. This command will make a machine accessible on `<ip to publish>`. Other docker hosts can now join the swarm on this IP. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
+## Anatomy of Docker Components
+
+![image](https://user-images.githubusercontent.com/17362519/111221493-efde6580-85b0-11eb-854b-09b61bdcdf0f.png)
+
+[Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
 ## Glossary
 

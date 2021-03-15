@@ -321,6 +321,10 @@ Docker Compose is excellent in running in automated testing and development envi
 
 If you installed Docker on either a Mac or Windows you should automatically have Docker Compose installed. If you are on a Linux machine check [here](https://github.com/docker/compose/releases) for installation instructions.
 
+**Other Synopsis of Docker Compose:**
+
+Docker compose is also an orchestration tool for docker. It allows you to easily manage multiple containers dependent on each other within one docker host via `docker-compose` CLI. You use a YAML file to configure all the containers. With one command you can start all containers in the correct order and set up networking between them. [Here](https://docs.docker.com/compose/reference/overview/) is the reference.
+
 ### Compose Features
 
 The most important features of Docker Compose are:
@@ -407,4 +411,13 @@ docker-compose up
 ```
 
 So nifty! 🙌 A complete list of Compose CLI flags can be found [here](https://docs.docker.com/compose/reference/overview/).
+
+### Docker Compose vs Docker Swarm
+
+**Swarm**
+Docker swarm is another orchestration tool aimed to manage a cluster of docker hosts. While docker-compose managers _multiple Docker containers within one docker host_, docker swarm manages _multiple docker hosts managing multiple Docker containers_.
+
+Unlike docker-compose and docker-machine, docker swarm is not a standalone orchestration software. Swarm mode is built in docker engine and is managed through Docker client.
+
+In order to create a swarm you need to ssh into a machine you intend to make into a swarm and `docker swarm init --advertise-addr <ip to publish>`. This command will make a machine accessible on `<ip to publish>`. Other docker hosts can now join the swarm on this IP.
 

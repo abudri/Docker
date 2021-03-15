@@ -323,7 +323,7 @@ If you installed Docker on either a Mac or Windows you should automatically have
 
 **Other Synopsis of Docker Compose:**
 
-Docker compose is also an orchestration tool for docker. It allows you to easily manage multiple containers dependent on each other within one docker host via `docker-compose` CLI. You use a YAML file to configure all the containers. With one command you can start all containers in the correct order and set up networking between them. [Here](https://docs.docker.com/compose/reference/overview/) is the reference.
+Docker compose is also an orchestration tool for docker. It allows you to easily manage multiple containers dependent on each other within one docker host via `docker-compose` CLI. You use a YAML file to configure all the containers. With one command you can start all containers in the correct order and set up networking between them. [Here](https://docs.docker.com/compose/reference/overview/) is the reference. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
 ### Compose Features
 
@@ -419,5 +419,5 @@ Docker swarm is another orchestration tool aimed to manage a cluster of docker h
 
 Unlike docker-compose and docker-machine, docker swarm is not a standalone orchestration software. Swarm mode is built in docker engine and is managed through Docker client.
 
-In order to create a swarm you need to ssh into a machine you intend to make into a swarm and `docker swarm init --advertise-addr <ip to publish>`. This command will make a machine accessible on `<ip to publish>`. Other docker hosts can now join the swarm on this IP.
+In order to create a swarm you need to ssh into a machine you intend to make into a swarm and `docker swarm init --advertise-addr <ip to publish>`. This command will make a machine accessible on `<ip to publish>`. Other docker hosts can now join the swarm on this IP. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 

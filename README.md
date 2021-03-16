@@ -10,9 +10,9 @@ Notes mainly from the amazingly well put together App Academy Open [Docker Curri
 * [Nuances & Extra Notes](https://github.com/abudri/Docker/blob/main/README.md#nuances--extra-notes)
 * [Best and Standard Practices](https://github.com/abudri/Docker/blob/main/README.md#best-and-standard-practices)
 * [Multi-Stage Builds](https://github.com/abudri/Docker/blob/main/README.md#multi-stage-builds)
-* [Anatomy of Docker Components]
+* [Anatomy of Docker Components](https://github.com/abudri/Docker/blob/main/README.md#anatomy-of-docker-components)
 * [Docker Compose](https://github.com/abudri/Docker/blob/main/README.md#docker-compose)
-* [Glossary]
+* [Glossary](https://github.com/abudri/Docker/blob/main/README.md#glossary)
 
 ## Basic CLI Docker Commands
 

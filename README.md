@@ -431,6 +431,17 @@ In order to create a swarm you need to ssh into a machine you intend to make int
 
 ## Glossary
 
+**Docker** - What is it? Docker is not a standalone software, it’s a platform for managing Linux containers. Whenever someone mentions docker in the context of software, they are talking about docker CE or docker EE. Docker is developed by Docker, Inc to simplify the usage of Linux containers. The platform consists of multiple tools for running and managing Linux containers, which include:
+
+**Docker daemon/engine**  - responsible for generation and running of Linux containers. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
+**Docker client** - a separate application which controls docker daemon through the REST API. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
+**Docker-compose, docker-machine, and docker swarm** -  orchestration tools, they are not necessary for running processes inside Linux containers, but they make container management very simple. To be frank, in real life scenarios they are pretty much a necessity, because managing all those containers, hosts and clusters of hosts manually is difficult. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
 **Docker Hub** - is a service that provides a registry of docker images. We can store our images on the docker hub and pull images made by others for us to use. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
 **Docker Registry** - allows us to host our own private registry in case we don’t want to use an existing one. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
+**Docker for Mac and Docker for Windows** - separate tools that simplify developing with docker on Mac or Windows.[Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+

@@ -2,7 +2,7 @@
 ](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/) by shota jolbordi**
 
 ## Table of Contents
-* [Computer Basics](https://github.com/abudri/Docker/new/main#computer-basics)
+* [Computer Basics](https://github.com/abudri/Docker/blob/main/VMs.md#computer-basics)
 * [Hypervisors](https://github.com/abudri/Docker/blob/main/VMs.md#hypervisors)
 
 ## Computer Basics

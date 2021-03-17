@@ -98,7 +98,58 @@ Docker’s approach to images is different from a VM’s. In a VM you would just
 
 In docker, images are read-only — you don’t run images directly, instead, you make a copy of an image and run it. This running instance of an image is called a container. By doing this you can have several instances of the same Linux container running at the same time, made from the same template, that are images. Whatever happens with a container does not affect the image it was made from. You can make as many instances of a container from an image as your hardware allows you to run.
 
+### Merge images via Union Mount
+For creating and storing images, docker uses Union Filesystem. It’s a service in Linux, FreeBSD, and NetBSD. Union Filesystems allow us to create one filesystem out of multiple different ones by merging them all together. The
+content’s of directories that have the same path will be seen together in a single merged directory. The process of merging is called “union mounting”.
 
+![image](https://user-images.githubusercontent.com/17362519/111533830-9ce5e900-873d-11eb-8a23-b52a35c12906.png)
+
+This is roughly how it works:
+
+There are 3 layers that come into play: base layer, overlay, and diff layer.
+When merging 2 filesystems, the process looks something like this (keep in mind I’m oversimplifying here):
+
+So we have a base filesystem, and we want to introduce some changes, add files/folders, remove files/folders.
+
+First we will create an overlay filesystem (empty at this point ) and diff filesystem (also empty at this point ). Then we will union mount those filesystems using the union filesystem service built into Linux. When looking into the overlay filesystem it will give us the view of the base filesystem. We can add stuff to it, remove stuff from it, as the actual base filesystem will be unaffected. Instead all changes made to the overlay filesystem will be stored in the diff filesystem. The diff filesystem shows the difference between the base and overlay filesystems.
+
+After we’re done editing the overlay filesystem, we will unmount it. In the end, we have the merged filesystem of overlay and base layers, and the actual base filesystem is unaffected.
+
+This is exactly how docker images are “stacked” on top of each other. Docker uses this exact technology to merge image filesystems.
+
+In order to create your image on top of the already existing image, you need to `touch Dockerfile`. This is a text file with a set of instructions on how to build an image. Take a look at this simple example.
+
+Inside the terminal run:
+
+`docker build <path of the folder with Dockerfile in it>`
+
+This command will build an image based on the instructions given in Dockerfile.
+
+First line: `FROM nodesource/trusty5.1`
+
+This line indicates that the base layer of this image is another image called `nodesource/trusty5.1`. By default docker will first try to look for this image locally. If it’s not there it will pull this image from docker hub, or from another docker image registry on this matter. So you just need to configure docker client to look for images in another image registry.
+
+Second line: `WORKDIR /app`
+
+This line tells docker that all the subsequent commands executed via `RUN` in Dockerfile will be executed from `/app`.
+
+Third line: `ADD . /app`
+
+This line tells docker which filesystems to merge on build. In this example, we see that the overlay layer is the current directory, relative to Dockerfile, and the base layer is `/app` inside `nodesource/trusty5.1` (an image).The base filesystem’s sub filesystem /app will be merged with an overlay filesystem. If /app filesystem does not exist in the base layer, it will be created as an empty folder.
+
+`RUN` command will execute a command inside an image while building it via default shell `/bin/sh`
+
+`RUN <command>` === `/bin/sh <command>`
+
+`EXPOSE` command will serve as documentation for a user to see which port the application is using. It’s not necessary.
+
+`CMD` will run a command in a container that will be built from this image on startup.
+
+In this example, `nodesource/thrusty5.1` is an Ubuntu image with nodeJs 5.1 installed inside of it. Inside `./app` directory relative to Dockerfile we have a nodeJs application. When merging them we’ll get an image of Ubuntu with nodeJs 5.1 installed in it and my application inside of it in the `/app` directory.
+
+![image](https://user-images.githubusercontent.com/17362519/111534164-0f56c900-873e-11eb-8103-7ab5c558e850.png)
+
+We can then spin up as many containers as we want from this template. Every container will execute `npm start` inside `/app` directory of a container on startup.
 
 
 

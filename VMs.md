@@ -40,14 +40,45 @@ Type 1 hypervisors have their own device drivers and interact with hardware dire
 
 This is a program that is installed on top of the operating system. You are probably more familiar with it, like VirtualBox or VMware Workstation. This type of hypervisor is something like a “translator” that translates the guest operating system’s system calls into the host operating system’s system calls.
 
-The system calls (syscalls) are a way in which a program requests a service from a Kernel, and the Kernel does — remember what? It manages underlying hardware.
+The **system calls (syscalls)** are a way in which a program requests a service from a Kernel, and the Kernel does — remember what? It manages underlying hardware.
 
-For example, in your program, say you want to copy the content of one file into another. Pretty straightforward right? For this, you need to take some bytes from one part of your Hard Disk and put them into another part. So basically, you are doing stuff with a physical resource, the Hard Disk in this example, and you would need to initiate a system call to do this. Of course in all programming languages, this is abstracted away from you, but you get the point.
+For example, in your program, say you want to copy the content of one file into another. Pretty straightforward right? For this, you need to take some bytes from one part of your Hard Disk and put them into another part. So basically, you are doing stuff with a physical resource, the Hard Disk in this example, and you would need to initiate a **system call** to do this. Of course in all programming languages, this is abstracted away from you, but you get the point.
 
 Since all OS Kernels, despite being implemented in different ways, do the same job (control hardware), we just need a program that will “translate” a guest OS’s system calls to control the hardware.
 
 An upside of a Type 2 hypervisor is that in this case we don’t have to worry about underlying hardware and it’s drivers. We really just need to delegate the job to the host OS, which will manage this stuff for us. The downside is that it creates a resource overhead, and multiple layers sitting on top of each other make things complicated and lowers the performance.
 
 ![image](https://user-images.githubusercontent.com/17362519/111483715-6e4f1a80-870b-11eb-977b-ab4bd3eca888.png)
+
+## Containers
+
+Virtual machines are not the only virtualization technique. In the case of a virtual machine, we have a full-blown virtual computer, in its entirety, with its own dedicated Kernel. We allocate RAM for it, we allocate memory for it, and we interact with it as if it was a standalone computer.
+
+There are several problems with this. First and most obvious is inefficient resource management. Once you allocate some resources for a VM, it’s going to hold onto them as long as it’s running.
+
+For example: if you allocate 4 GB of RAM and 40GB of disk memory for a VM, once you run it, those resources will be unavailable as long as this VM is running. It might only need 1 GB of RAM at some moment, and you might be lacking RAM for some other process in another VM or host machine. But since it has this amount of RAM allocated, it’s just going to sit there unused.
+
+Another problem is boot up time. Since the VM has its own Kernel, in case you need to restart your machine, it will need to boot up an entire Kernel. While the machine is rebooting, your service that was running in VM will be unavailable.
+
+### Containers to the rescue
+
+To put it simply, a container is a virtual machine without a Kernel. Instead, it is using the Kernel of a host operating system. To make this possible, we need a set of software and libraries that will allow containers to use the underlying OS Kernel, and sort of “link” them if you wish. Such libraries are, for example, **“liblxc”** and **“libcontainer”** (this last one is developed by Docker, Inc and is used inside docker engine).
+
+Containers have their own allocated filesystem and IP. Libraries, binaries, services are installed inside a container, however, all the system calls and Kernel functionality comes from the underlying host OS.
+
+Containers are very lightweight. Boot up and restart happens very fast because they don’t need to start up the Kernel every time. They don’t waste physical resources since they don’t need them to be allocated for their Kernel, as they don’t have a separate Kernel.
+
+One drawback is that _**it’s only possible to run containers of the same type as the underlying OS**_. You can’t run Linux containers on Windows or Mac, because they need Linux Kennel to operate. The solution for Mac and Windows users would be to install a type 2 hypervisor such as **VirtualBox** or **WMware Workstation**, boot up the Linux machine, and then run Linux containers inside of it (in fact that’s what Docker for Mac and Docker for Windows do, but they use native hypervisors that come with the respective OS).
+
+Setting up and running Linux containers is not that straightforward. It’s troublesome and requires a decent knowledge of Linux. Managing them is even more tedious.
+
+As I’ve mentioned above, what Docker, Inc does is it makes Linux containers easy to use and available to everybody, and you do not have to be a Linux geek to use Linux containers nowadays thanks to docker.
+
+![image](https://user-images.githubusercontent.com/17362519/111528124-234afc80-8737-11eb-91dd-c6a9e70b4402.png)
+
+
+
+
+
 
 

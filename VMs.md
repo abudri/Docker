@@ -77,6 +77,27 @@ As I’ve mentioned above, what Docker, Inc does is it makes Linux containers ea
 
 ![image](https://user-images.githubusercontent.com/17362519/111528124-234afc80-8737-11eb-91dd-c6a9e70b4402.png)
 
+### Containers VS Virtual Machines
+
+From the previous section about containers, you might think that containers are just better virtualization solutions than VM’s, but that’s not how it is.
+
+A container’s purpose is running processes in an isolated environment, for docker each container for every single process. VM’s are for emulating an entire machine. Nowadays only Linux and windows containers exist, but there are all kinds of hypervisors to emulate any kind of operating system. You can run windows 10 inside an iPad if you wish. Those 2 are different technologies and they don’t compete with each other.
+
+VM’s are more secure, since containers make system calls directly to the Kernel. This opens up a whole verity of vulnerabilities.
+
+Some low-level software that messes with a Kernel directly should be sandboxed inside a virtual machine.
+
+Often you can see docker containers running inside virtual machines in the production environment, so VM’s and containers actually stick together very well.
+
+### Docker Images and Containers
+Docker introduces several concepts that simplify…or I would rather say revolutionize the usage of Linux Containers
+
+Linux containers in docker are made from templates called “images”. An image is a basically a binary file that holds the state of a Linux machine (without the Kernel of course). You can draw a parallel to VM’s disk images such as .vdi, .vmdk or .vhd files.
+
+Docker’s approach to images is different from a VM’s. In a VM you would just mount a disk image, run the VM, and you would have a running instance of a machine. Whenever you modify filesystem in VM, install or remove anything, all of this is reflected on an image you’ve mounted. The image is basically the Hard Disk of the machine.
+
+In docker, images are read-only — you don’t run images directly, instead, you make a copy of an image and run it. This running instance of an image is called a container. By doing this you can have several instances of the same Linux container running at the same time, made from the same template, that are images. Whatever happens with a container does not affect the image it was made from. You can make as many instances of a container from an image as your hardware allows you to run.
+
 
 
 

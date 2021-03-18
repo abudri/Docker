@@ -205,5 +205,23 @@ Fo from this container, I should be able to ping another one with an IP of `172.
 
 This was just a simple example of docker networks. There is much more to it, so check out the official [documentation](https://docs.docker.com/network/network-tutorial-standalone/).
 
+### Volumes
 
+As I’ve said before, Docker containers are not supposed to maintain any state. But what if we need state? In fact, some processes are inherently stateful, like a database. For example, a database needs to maintain all the files with data, as that’s a purpose of the database. If we store this data inside a container, when it’s is gone, so is the data. Additionally, we can’t share this data between multiple instances of the container.
+
+To solve this problem, docker introduced volumes. Volumes allow us to store data on the host machine, or on any other machine for that matter, even on the cloud and link the container (or several containers) to this storage.
+
+For example, previously you could see how I created a container from a MongoDB image and ran it using this command:
+
+`docker run -d — net=myTestNetwork mongo`
+
+When running a container like this, Mongo DB will run inside this Linux container, and save database files under the `/data/db` directory inside the container.
+
+Now consider this:
+
+`docker run -d -v /folder-on-host-machine/data/db:/data/db — net=myTestNetwork mongo`.
+
+The `-v` flag mounts a volume to a container, so now data between host folder’s `/folder-on-host-machine/data/db` and the container’s `/data/db` will be synchronized. Now we can potentially run several instances of a MongoDB container and link them all to this volume on a host machine. If one of the instances shuts down, another one is still available and data is not lost because data is stored on a host machine, not inside a container. The container itself is stateless, as it should be.
+
+There is much more to learn about volumes, like details and use cases, but we won’t cover them in this article. Here I just explained what are they and why we need them.
 

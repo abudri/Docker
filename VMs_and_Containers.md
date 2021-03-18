@@ -201,7 +201,7 @@ The IP happens to be `172.19.0.2`.
 
 Fo from this container, I should be able to ping another one with an IP of `172.19.0.3`:
 
-![image](https://user-images.githubusercontent.com/17362519/111674725-b137ed80-87f2-11eb-9bed-75b5043e6c1d.png)
+![image](https://user-images.githubusercontent.com/17362519/111674725-b137ed80-87f2-11eb-9bed-75b5043e6c1d.png =100x20)
 
 This was just a simple example of docker networks. There is much more to it, so check out the official [documentation](https://docs.docker.com/network/network-tutorial-standalone/).
 

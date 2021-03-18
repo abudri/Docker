@@ -159,7 +159,51 @@ Docker containers are a bit different than usual Linux containers. **Docker cont
 
 Docker containers are not supposed to maintain any state, so you can’t ssh into your docker container (well technically you can, but don’t). You should not have it running several processes at once, like, for example, the database and the app that use it. In this case, you would use 2 separate containers and make them communicate with each other. Docker containers are a specific use case of Linux containers to build loosely coupled stateless applications as services.
 
+### Inter-Container communication
 
+As I’ve mentioned above, every container should only be running one process. So perhaps now a natural question will emerge: if for example, my app is running in one container and the database is running in another, how do I connect from my app to a database that is running in another container? You can’t connect to localhost in this case.
+
+Docker introduced networking for standalone containers. A very high-level overview of network usage looks like this: you create a new network, which creates a subnet for this network alone. You start a container and attach it to this network, and all containers attached to the same network will be able to ping each other, as if they were on a LAN. Then you can connect from one service running in one container to a service running in another one, as long as they are on the same network.
+
+Okay now, how does it look like?
+
+Run `docker network create <some name>`:
+
+![image](https://user-images.githubusercontent.com/17362519/111674450-6322ea00-87f2-11eb-8b4c-db772d68170e.png)
+
+You can list all available networks by running `docker network list`:
+
+![image](https://user-images.githubusercontent.com/17362519/111674474-6b7b2500-87f2-11eb-8c59-e7f3230829aa.png)
+
+Run `docker network inspect <network id or name>` to see the network subnet and which containers are currently attached to it:
+
+![image](https://user-images.githubusercontent.com/17362519/111674561-864d9980-87f2-11eb-9f6f-ccbd7ecffb11.png)
+
+As you can see, it shows the network’s subnet, default getaway, and we also see there are no containers attached to it.
+
+Now I’m going to create 2 containers, from 2 different images, `nodejsapi`, `mongo` and run them. `--net` options indicate which network to use:
+
+![image](https://user-images.githubusercontent.com/17362519/111674599-91a0c500-87f2-11eb-8623-ed517f6ace9c.png)
+
+`docker run <image name>` creates a container from an image and starts it. Now I’ll inspect the network again:
+
+![image](https://user-images.githubusercontent.com/17362519/111674674-a2e9d180-87f2-11eb-853e-39fe42939e90.png)
+
+As you now can see 2 containers are running attached to this network. We can also see the IP’s they are using and that they are running on the same subnet. I should be able to ping one container from another now.
+
+Let’s get an IP of one of the running containers:
+
+![image](https://user-images.githubusercontent.com/17362519/111674690-aa10df80-87f2-11eb-8fe7-d611576afe55.png)
+
+Here I’ve executed the `ifconfig` command inside a container with id `8d3aaca5750f` and redirected output to my terminal.
+
+The IP happens to be `172.19.0.2`.
+
+Fo from this container, I should be able to ping another one with an IP of `172.19.0.3`:
+
+![image](https://user-images.githubusercontent.com/17362519/111674725-b137ed80-87f2-11eb-9bed-75b5043e6c1d.png)
+
+This was just a simple example of docker networks. There is much more to it, so check out the official [documentation](https://docs.docker.com/network/network-tutorial-standalone/).
 
 
 

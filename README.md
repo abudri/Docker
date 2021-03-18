@@ -240,6 +240,8 @@ In general if you see an image has an `alpine` tag version available it means 
 	
 There can only be one CMD instruction in a Dockerfile. If you list more than one CMD then only the last CMD will take effect.
 
+Also: Docker containers are a bit different than usual Linux containers. Docker containers are made specifically to run a single process in an isolated environment of a Linux container. That’s why we have CMD in Dockerfile, which indicates which process is this going to be. The Docker container will be automatically terminated once there is no process running inside of it. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
+
 ## Nuances & Extra Notes
 
 #### `RUN` vs `CMD`

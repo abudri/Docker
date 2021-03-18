@@ -151,6 +151,14 @@ In this example, `nodesource/thrusty5.1` is an Ubuntu image with nodeJs 5.1 inst
 
 We can then spin up as many containers as we want from this template. Every container will execute `npm start` inside `/app` directory of a container on startup.
 
+### Docker containers
+
+Docker containers, as you already know, are running copies of an image. One additional thing that docker does when creating a container from an image is that it adds a read-write filesystem over the image’s filesystem because the image’s filesystem is read-only.
+
+Docker containers are a bit different than usual Linux containers. **Docker containers are made specifically to run a single process in an isolated environment of a Linux container**. That’s why we have `CMD` in Dockerfile, which indicates which process is this going to be. The Docker container will be automatically terminated once there is no process running inside of it.
+
+Docker containers are not supposed to maintain any state, so you can’t ssh into your docker container (well technically you can, but don’t). You should not have it running several processes at once, like, for example, the database and the app that use it. In this case, you would use 2 separate containers and make them communicate with each other. Docker containers are a specific use case of Linux containers to build loosely coupled stateless applications as services.
+
 
 
 

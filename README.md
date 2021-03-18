@@ -73,6 +73,21 @@ After running the above command, you would be able to visit on local machine - s
 
 `docker container rm -f <container_name>` - will remove your container even it is currently running.
 
+#### `network` Commands
+
+`docker network create <some_name>` - creates a Docker network.
+
+`docker network list` - lists available Docker networks.
+
+`docker network inspect <network id or name>` - see the network's subnet and which containers are currently attached to it.  It also shows default getaway and which - if any - containers are attached to it.
+
+`docker exec -it <docker conainer name or id> ifconfig` - Gets the IP of the container and other network information.
+
+`docker exec -it <docker conainer name or id> ping <ip address of choice>` - After getting the IP address of a container from the previous command above, you can ping that container _from another container_ to check the connectivity between two containers.
+
+[Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/) for commands in this subsection.
+
+
 ### `push`ing a Docker image to Docker Hub
 
 `docker login` - this is your username and password for Docker Hub. Do this if necessary.

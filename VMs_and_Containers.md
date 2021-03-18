@@ -5,6 +5,11 @@
 * [Computer Basics](https://github.com/abudri/Docker/blob/main/VMs.md#computer-basics)
 * [Hypervisors](https://github.com/abudri/Docker/blob/main/VMs.md#hypervisors)
 * [Containers](https://github.com/abudri/Docker/blob/main/VMs.md#containers)
+  * [Containers VS Virtual Machines](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#containers-vs-virtual-machines)
+  * [Docker Images and Containers](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#docker-images-and-containers)
+  * [Merge images via Union Mount](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#merge-images-via-union-mount)
+  * [Docker containers](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#docker-containers)
+  * [Inter-container Communication](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#inter-container-communication)
   * [Volumes](https://github.com/abudri/Docker/blob/main/VMs_and_Containers.md#volumes)
 
 ## Computer Basics

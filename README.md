@@ -431,6 +431,76 @@ docker-compose up
 
 So nifty! 🙌 A complete list of Compose CLI flags can be found [here](https://docs.docker.com/compose/reference/overview/).
 
+### Docker Compose using Custom Image
+
+You can use Docker compose using a custom image from a `Dockerfile`.  This takes from the Day 3 [Homework](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/first-docker-compose-file) in the App Academy Open course.  Say you have in your project directory this `Dockerfile` to build a custom image:
+
+```docker
+# This shows how we can extend an existing official image from Docker Hub
+
+FROM nginx:1.15-alpine
+# Always pin a version. It'll make development so much easier. 
+
+# Change our working directory to the root of nginx webhost
+# using WORKDIR is preferred to using 'RUN cd /some/path'
+WORKDIR /usr/share/nginx/html
+
+# Copy in the file!
+COPY index.html index.html
+# Don't have to specify EXPOSE or CMD because they're in my FROM
+```
+
+From this same home directory in the project, you have the following `docker-compose.yml` file.  The comments have brief explanation:
+
+```yaml
+version: "2"  # needs to be version 2 or higher, version 1 has less functionality
+
+services: # defined your service
+  webapp:  # name of your service is `webapp`
+    build:
+      context: . # this takes the Dockerfile from your current directory
+    image: nginx:latest_greatest #image name and tag
+    ports:
+      - '80:80'  # port 80 local host is binded to port 80 of container
+```
+From the terminal you can now build and run the container in one simple command, `docker-compose up`. Note, to free up the terminal you can run it in detached mode with a `-d` flag, so `docker-compose up -d`:
+
+```bash
+z@Mac-Users-Apple-Computer homework_day_3 % docker-compose up
+Building webapp
+Step 1/3 : FROM nginx:1.15-alpine
+1.15-alpine: Pulling from library/nginx
+e7c96db7181b: Pull complete
+264026bbe255: Pull complete
+a71634c55d29: Pull complete
+5595887beb81: Pull complete
+Digest: sha256:57a226fb6ab6823027c0704a9346a890ffb0cacde06bc19bbc234c8720673555
+Status: Downloaded newer image for nginx:1.15-alpine
+ ---> dd025cdfe837
+Step 2/3 : WORKDIR /usr/share/nginx/html
+ ---> Running in e734a7807195
+Removing intermediate container e734a7807195
+ ---> d1f46e4771db
+Step 3/3 : COPY index.html index.html
+ ---> 807fd3728909
+
+Successfully built 807fd3728909
+Successfully tagged nginx:latest_greatest
+WARNING: Image for service webapp was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Creating homework_day_3_webapp_1 ... done
+Attaching to homework_day_3_webapp_1
+webapp_1  | 172.19.0.1 - - [19/Mar/2021:16:38:15 +0000] "GET / HTTP/1.1" 200 293 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" "-"
+webapp_1  | 2021/03/19 16:38:15 [error] 7#7: *2 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+```
+
+Note you get get request logging above as well.  If you run a `docker container ls`, you see your running container listed:
+
+```bash
+z@Mac-Users-Apple-Computer homework_day_3 % docker container ls
+CONTAINER ID        IMAGE                   COMMAND                  CREATED              STATUS              PORTS                NAMES
+433d34494407        nginx:latest_greatest   "nginx -g 'daemon of…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   homework_day_3_webapp_1
+```
+
 ### Docker Compose vs Docker Swarm
 
 **Swarm**

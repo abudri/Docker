@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  app:
+    build:
+      context: .
+    image: nodeapp:latest
+    ports:
+      - '80:3000' # NodeJS apps run on port 3000, so expose your local port 80 and use port 3000 in the container
+    networks:
+      - nodemernapp
+    environment:
+      - MONGO_URI=mongodb://mongo_db/nodeapp
+  db:
+    image: mongo:3.0.15
+    volumes:
+      - mongo-db:/data/db # named volume
+    networks:
+      nodemernapp:
+        aliases:
+          - "mongo_db"
+
+volumes:  # named volumes must be under this `volumes` key
+  mongo-db: # from the `db` image `volume` key
+
+networks:
+  nodemernapp:
+    driver: bridge

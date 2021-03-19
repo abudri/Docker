@@ -344,6 +344,8 @@ If you installed Docker on either a Mac or Windows you should automatically have
 
 Docker compose is also an orchestration tool for docker. It allows you to easily manage multiple containers dependent on each other within one docker host via `docker-compose` CLI. You use a YAML file to configure all the containers. With one command you can start all containers in the correct order and set up networking between them. [Here](https://docs.docker.com/compose/reference/overview/) is the reference. [Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
+Overview: In the words of Docker, "Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration". As you learned in the Compose readings you can define a complex stack in one file and have it running with a single command! This would mean you would no longer have to use separate terminal tabs open for running your server and your front end. No more defining containers by hand! The people at Docker choose to call this gift, Docker Compose. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/becoming-compose-pros)
+
 ### Compose Features
 
 The most important features of Docker Compose are:

@@ -346,6 +346,14 @@ Docker compose is also an orchestration tool for docker. It allows you to easily
 
 Overview: In the words of Docker, "Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration". As you learned in the Compose readings you can define a complex stack in one file and have it running with a single command! This would mean you would no longer have to use separate terminal tabs open for running your server and your front end. No more defining containers by hand! The people at Docker choose to call this gift, Docker Compose. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/becoming-compose-pros)
 
+#### Workflow
+
+Using Compose is basically a three-step process.
+
+1. Define your app's environment with a `Dockerfile` so it can be reproduced anywhere.
+2. Define the services that make up your app in `docker-compose.yml` so they can be run together in an isolated environment.
+3. Lastly, run `docker-compose up` and Compose will start and run your entire app. [Reference](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/becoming-compose-pros)
+
 ### Compose Features
 
 The most important features of Docker Compose are:
@@ -362,7 +370,7 @@ When we say "Docker Compose" we are really referring to two things:
 
 1. A YAML formatted file - describing what is needed in terms of containers, networks, and volumes. This file is usually named `docker-compose.yml`.
 2. A CLI tool (`docker-compose`) which is primarily used for local development and testing which relies on the YAML file.
-3. 
+
 The first line of a `docker-compose.yml` file is the version of Compose you will be using. Docker Compose has gone through several iterations and there are a many available versions for you to use. We generally recommend using at least version `2` for your files. Though for certain features you many need to upgrade to a higher version. See a list of Docker Compose versions and features [here](https://docs.docker.com/compose/compose-file/compose-versioning/).
 
 Using Compose is basically a three-step process:

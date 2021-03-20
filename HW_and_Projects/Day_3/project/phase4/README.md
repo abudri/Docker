@@ -134,7 +134,7 @@ Removing volume phase4_drupal-data
 
 #### **Bonuses: Add Health Checks!**
 
-Healthchecks are of course in the `docker-compose.yml` file of this directory. 
+Health checks are of course in the `docker-compose.yml` file of this directory. 
 
 I added the postgres health check based on this simple example: https://github.com/peter-evans/docker-compose-healthcheck
 

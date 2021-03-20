@@ -64,6 +64,8 @@ Amazing Job! When you are done looking at your work use `docker-compose down -v
 
 ## **Terminal Outputs/Solution**
 
+Final file solutions are of course in the `docker-compose.yml` and `Dockerfile` file in this directory, ie, above.
+
 From our `services` in the `docker-compose.yml` file is `app`, which is built using `build` in the same `docker-compose.yml`file, and built from our `Dockerfile` in the same location, ie, `.`.
 
 The following is the output after running `docker-compose up`:

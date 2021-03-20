@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  drupal_app:
+    build:
+      context: .
+    image: abdullahb/custom-drupal
+    ports:
+      - '8080:80'
+    depends_on: # healthcheck set in the db service below
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_PASSWORD=abc123
+    volumes:
+      - drupal-data:/var/lib/postgresql/data
+    healthcheck: # sample postgres healthcheck taken from https://github.com/peter-evans/docker-compose-healthcheck
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  drupal-data:

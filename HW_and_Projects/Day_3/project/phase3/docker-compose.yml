@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  voteapp: # The frontend of the application written in Python, for casting votes
+    image: dockersamples/examplevotingapp_vote:before
+    ports: 
+      - '5000:80' # locally exposed port should be 5000, container's internally exposed port is 80
+    networks: 
+      - frontend
+
+  redis_memory: # The in-memory key/value storage for incoming votes
+    image: redis:3.2
+    networks: 
+      - frontend
+
+  net_worker: # .NET worker, transfers votes from redis to postgres db 
+    image: dockersamples/examplevotingapp_worker
+    networks: # Is on both networks
+      - frontend
+      - backend
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    networks: 
+      - backend
+
+  resultsapp:
+    image: dockersamples/examplevotingapp_result:before
+    ports: 
+      - '5001:80' # locally exposed port of 5001, container exposed port / listening on port 80
+    networks: 
+      - backend
+
+volumes:  # named volumes must be under this `volumes` key
+  postgres-db:  # named volume from the postgres db earlier in this file
+
+networks:
+  frontend:
+  backend:

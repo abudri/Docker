@@ -64,7 +64,7 @@ Amazing Job! When you are done looking at your work use `docker-compose down -v
 
 ## **Terminal Outputs/Solution**
 
-Final file solutions are of course in the `docker-compose.yml` and `Dockerfile` file in this directory, ie, above.  Also note that all the needed application code are also found from the [homework](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/becoming-compose-pros) itself in the Phase 2 section, not shown in this repo.
+Final file solutions are of course in the `docker-compose.yml` and `Dockerfile` file in this directory, ie, above.  Also note that all the needed application code are also found from the [homework](https://open.appacademy.io/learn/full-stack-online/docker-curriculum/becoming-compose-pros) itself in the Phase 2 section as a download, and not shown in this repo.
 
 From our `services` in the `docker-compose.yml` file is `app`, which is built using `build` in the same `docker-compose.yml`file, and built from our `Dockerfile` in the same location, ie, `.`.
 

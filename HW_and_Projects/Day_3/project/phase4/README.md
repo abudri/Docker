@@ -62,3 +62,79 @@ Now you have all the tools you need to host your own projects locally! Make sure
 Complete deploying your projects to Heroku using Docker before attempting this phase.
 
 Show how devoted you are to good testing by adding [health checks](https://docs.docker.com/compose/compose-file/#healthcheck) to all the `docker_compose.yml` files you've written today. Make sure your health checks work and everything still runs properly.
+
+## **Terminal Outputs/Solution**
+
+Files solution is of course in the `docker-compose.yml`, `Dockerfile`, and `.dockerignore` files in this directory, ie, above.
+
+When the files were ready and I ran `docker-compose up -d` command to start the application, I headed to http://localhost:8080 and saw this after following the instructions, note that I used our service name `db` for postgres, from the `docker-compose.yml` file, for `Host` in `ADVANCED OPTIONS`:
+
+![image](https://user-images.githubusercontent.com/17362519/111874516-18c57880-896c-11eb-84d7-313f10b99aff.png)
+
+Next, Next drupal built the site:
+
+![image](https://user-images.githubusercontent.com/17362519/111874527-2b3fb200-896c-11eb-854e-a0da5c77cbe9.png)
+
+Next I configured the site with "whatever" - name of site, email, etc - and was finally taken to this page:
+
+![image](https://user-images.githubusercontent.com/17362519/111874566-46122680-896c-11eb-9815-95ee0cc62edb.png)
+
+Then went to the website comes up, clicked on `Appearance` in the top bar, saw a theme called `Bootstrap` and that's expected, the theme we  were attempting to import! That's the one we added with our custom Dockerfile. It's just not installed yet:
+
+![image](https://user-images.githubusercontent.com/17362519/111874630-74900180-896c-11eb-98a1-b3e5fd444964.png)
+
+Clicked `Install and set as default`:
+
+![image](https://user-images.githubusercontent.com/17362519/111874646-82458700-896c-11eb-9a22-3fec1361c765.png)
+
+Then clicked `Back to site` (in the top left) and the website interface looked different/nicer:
+
+![image](https://user-images.githubusercontent.com/17362519/111874660-91c4d000-896c-11eb-891d-bb6cdafb3c3b.png)
+
+**From instructions(roughly)**:
+> You've successfully installed and activated a new theme in your own custom image without installing anything on your host other than Docker! If you exit (`ctrl-c`) and then `docker-compose down` it will delete containers, but not the volumes, so on next `docker-compose up` everything will be as it was. 
+
+But, we actually ran this in `-d` for detached mode, so my terminal is already there, and `ctrl-c` isn't necessary.  I ran `docker-compose down` and it stopped my containers, but woops, **it also deleted them  after stopping them**. I have to go through the same setup again. so it is better to run in regular `docker-compose up` for non-detached mode, then `ctrl-c` and then you can docker-compose up and see things still as is.  Note, I had to also do `docker-compose down -v` to remove the volume, because without that, some of the data stored in the volume gave me funky website behavior when bringing back the containers with `docker-compose up`, before that `-v` removal of the volume.
+
+```bash
+z@Mac-Users-Apple-Computer phase4 % docker-compose down
+Stopping phase4_drupal_app_1 ... done
+Stopping phase4_db_1         ... done
+Removing phase4_drupal_app_1 ... done
+Removing phase4_db_1         ... done
+Removing network phase4_default
+```
+
+So I did remove the volume and the containers and then did the setup again with `docker-compose up` and so I have the log here, and then did `ctrl-c` and then it stopped the containers, **without removing them(!)**, and then here I am:
+
+```bash
+drupal_app_1  | 172.23.0.1 - - [20/Mar/2021:13:09:36 +0000] "GET /sites/default/files/js/js_UY8Qfm89Bf2Yx3GP05FSvqn9NCxdWTBt2BBH4r9BcAg.js HTTP/1.1" 200 61667 "http://localhost:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
+drupal_app_1  | 172.23.0.1 - - [20/Mar/2021:13:09:36 +0000] "POST /contextual/render HTTP/1.1" 200 1740 "http://localhost:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping phase4_db_1         ... done
+Stopping phase4_drupal_app_1 ... done
+```
+I run `docker-compose up` and have my site back:
+
+![image](https://user-images.githubusercontent.com/17362519/111874737-ef591c80-896c-11eb-8098-8b23359e0bc0.png)
+
+Finally, I stopped with `ctrl-c` and then removed the container and the volume:
+
+```bash
+0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping phase4_db_1         ... done
+Stopping phase4_drupal_app_1 ... done
+z@Mac-Users-Apple-Computer phase4 % docker-compose down -v
+Removing phase4_db_1         ... done
+Removing phase4_drupal_app_1 ... done
+Removing network phase4_default
+Removing volume phase4_drupal-data
+```
+
+#### **Bonuses: Add Health Checks!**
+
+Healthchecks are of course in the `docker-compose.yml` file of this directory. 
+
+I added the postgres health check based on this simple example: https://github.com/peter-evans/docker-compose-healthcheck
+

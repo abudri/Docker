@@ -130,7 +130,7 @@ Creating mongo-node-app_app_1 ... error
 WARNING: Host is already in use by another container
 ```
 
-I did have some network conflic I had to fix, and then here was rest of regular output:
+I did have some network conflict I had to fix, and then here was rest of regular output:
 
 ```bash
 z@Mac-Users-Apple-Computer mongo-node-app % docker-compose up

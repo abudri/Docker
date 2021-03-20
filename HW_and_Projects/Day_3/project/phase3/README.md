@@ -69,7 +69,7 @@ Awesome job! After you've debated about "cats vs. dogs" in your heart move onto 
 
 ## Terminal Outputs/Solution
 
-File solutions is of course in the `docker-compose.yml` file in this directory, ie, above.
+File solution is of course in the `docker-compose.yml` file in this directory, ie, above.
 
 After the `docker-compose.yml` file was built, this is the result of running `docker-compose up`:
 

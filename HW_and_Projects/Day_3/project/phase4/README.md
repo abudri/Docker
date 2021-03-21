@@ -69,27 +69,27 @@ Files solution is of course in the `docker-compose.yml`, `Dockerfile`, and `.doc
 
 When the files were ready and I ran `docker-compose up -d` command to start the application, I headed to http://localhost:8080 and saw this after following the instructions, note that I used our service name `db` for postgres, from the `docker-compose.yml` file, for `Host` in `ADVANCED OPTIONS`:
 
-![image](https://user-images.githubusercontent.com/17362519/111874516-18c57880-896c-11eb-84d7-313f10b99aff.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874516-18c57880-896c-11eb-84d7-313f10b99aff.png" width="650" />
 
 Next, Next drupal built the site:
 
-![image](https://user-images.githubusercontent.com/17362519/111874527-2b3fb200-896c-11eb-854e-a0da5c77cbe9.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874527-2b3fb200-896c-11eb-854e-a0da5c77cbe9.png" width="650" />
 
 Next I configured the site with "whatever" - name of site, email, etc - and was finally taken to this page:
 
-![image](https://user-images.githubusercontent.com/17362519/111874566-46122680-896c-11eb-9815-95ee0cc62edb.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874566-46122680-896c-11eb-9815-95ee0cc62edb.png" width="650" />
 
 Then went to the website comes up, clicked on `Appearance` in the top bar, saw a theme called `Bootstrap` and that's expected, the theme we  were attempting to import! That's the one we added with our custom Dockerfile. It's just not installed yet:
 
-![image](https://user-images.githubusercontent.com/17362519/111874630-74900180-896c-11eb-98a1-b3e5fd444964.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874630-74900180-896c-11eb-98a1-b3e5fd444964.png" width="650" />
 
 Clicked `Install and set as default`:
 
-![image](https://user-images.githubusercontent.com/17362519/111874646-82458700-896c-11eb-9a22-3fec1361c765.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874646-82458700-896c-11eb-9a22-3fec1361c765.png" width="650" />
 
 Then clicked `Back to site` (in the top left) and the website interface looked different/nicer:
 
-![image](https://user-images.githubusercontent.com/17362519/111874660-91c4d000-896c-11eb-891d-bb6cdafb3c3b.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874660-91c4d000-896c-11eb-891d-bb6cdafb3c3b.png" width="650" />
 
 **From instructions(roughly)**:
 > You've successfully installed and activated a new theme in your own custom image without installing anything on your host other than Docker! If you exit (`ctrl-c`) and then `docker-compose down` it will delete containers, but not the volumes, so on next `docker-compose up` everything will be as it was. 
@@ -116,7 +116,7 @@ Stopping phase4_drupal_app_1 ... done
 ```
 I run `docker-compose up` and have my site back:
 
-![image](https://user-images.githubusercontent.com/17362519/111874737-ef591c80-896c-11eb-8098-8b23359e0bc0.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874737-ef591c80-896c-11eb-8098-8b23359e0bc0.png" width="650" />
 
 Finally, I stopped with `ctrl-c` and then removed the container and the volume:
 

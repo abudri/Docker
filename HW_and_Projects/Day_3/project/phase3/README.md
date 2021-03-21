@@ -2,7 +2,7 @@
 
 We will be creating the `docker-compose.yml` file for a Voting Application for the world's toughest question: "cats or dogs?". Users can cast their votes, which will be saved, and admin users can see the votes cast. This is an application based on micro-services architecture, consisting of 5 individually simple services.
 
-![https://assets.aaonline.io/Docker/voting.png](https://assets.aaonline.io/Docker/voting.png)
+<img src="https://assets.aaonline.io/Docker/voting.png" width="650" />
 
 1. **Voting-App:** The frontend of the application written in Python, used by users to cast their votes.
 2. **Redis:** The in-memory database, used as intermediate storage.
@@ -73,7 +73,7 @@ File solution is of course in the `docker-compose.yml` file in this directory, i
 
 After the `docker-compose.yml` file was built, this is the result of running `docker-compose up`:
 
-![image](https://user-images.githubusercontent.com/17362519/111874203-748f0200-896a-11eb-803a-e0d8d4497629.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874203-748f0200-896a-11eb-803a-e0d8d4497629.png" width="650" />
 
 Also, this is the terminal output from running `docker-compose up`:
 
@@ -374,7 +374,7 @@ Note: You can also see the networks that compose created for you using `docker 
 
 I had voted before on the front end and did `docker-compose down` (or actually, `ctrl+c`)and then `docker-compose up` and yes, my votes persisted, due to the docker volume still available from the last time it was built and used by me for the voting app:
 
-![image](https://user-images.githubusercontent.com/17362519/111874327-1f072500-896b-11eb-9787-183805cea3ee.png)
+<img src="https://user-images.githubusercontent.com/17362519/111874327-1f072500-896b-11eb-9787-183805cea3ee.png" width="650" />
 
 The above of course was at http://localhost:5001 where you see the result service at work as you can look on the number of votes and who voted for what.
 

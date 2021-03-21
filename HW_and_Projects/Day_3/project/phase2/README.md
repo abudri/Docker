@@ -161,11 +161,11 @@ Instructions:
 
 Did so and saw this:
 
-![image](https://user-images.githubusercontent.com/17362519/111875699-7ad4ac80-8971-11eb-8983-b1dd8514de7c.png)
+<img src="https://user-images.githubusercontent.com/17362519/111875699-7ad4ac80-8971-11eb-8983-b1dd8514de7c.png" width="650" />
 
 Created some users:
 
-![image](https://user-images.githubusercontent.com/17362519/111875727-99d33e80-8971-11eb-9432-d147d3835a1e.png)
+<img src="https://user-images.githubusercontent.com/17362519/111875727-99d33e80-8971-11eb-9432-d147d3835a1e.png" width="650" />
 
 Instructions:
 > To test that your named volume was installed properly use `docker-compose down` and then use `docker-compose up` again. Your users should still exist on your localhost.

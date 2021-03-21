@@ -210,4 +210,4 @@ localhost:5000
 
 I did get that POST to take and show the data:
 
-![image](https://user-images.githubusercontent.com/17362519/111876484-5d094680-8975-11eb-83a4-15834ef3e294.png)
+<img src="https://user-images.githubusercontent.com/17362519/111876484-5d094680-8975-11eb-83a4-15834ef3e294.png" width="650" />

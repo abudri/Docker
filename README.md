@@ -377,7 +377,7 @@ Using Compose is basically a three-step process:
 
 1. Define your app’s environment with a `Dockerfile` so it can be reproduced anywhere.
 2. Define the `services` that make up your app in the `docker-compose.yml` so they can be run together in an isolated environment.
-3. Run 	docker-compose up` and Compose will start and run your entire app.
+3. Run 	`docker-compose up` and Compose will start and run your entire app.
 
 When we are talking about Docker Compose the word `services` refers to running multiple containers. Below is a breakdown of the general way your file should be formatted:
 

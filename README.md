@@ -267,6 +267,16 @@ Also: Docker containers are a bit different than usual Linux containers. Docker 
 
 #### `RUN` vs `CMD`
 
+[RUN](https://docs.docker.com/engine/reference/builder/#run) is an image build step, the state of the container after a `RUN` command will be committed to the container image. A Dockerfile can have many `RUN` steps that layer on top of one another to build the image.
+
+[CMD](https://docs.docker.com/engine/reference/builder/#cmd) is the command the container executes by default when you launch the built image. A Dockerfile will only use the final `CMD` defined. The `CMD` can be overridden when starting a container with `docker run $image $other_command`.
+
+`ENTRYPOINT` is also closely related to `CMD` and can modify the way a container starts an image.
+
+Reference: https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile
+
+Also:
+
 `RUN` and `CMD` are both Dockerfile instructions. `RUN` lets you execute commands inside of your Docker image. These commands get executed once at build time and get written into your Docker image as a new layer. ... `CMD` lets you define a default command to run when your container starts. [Reference](https://nickjanetakis.com/blog/docker-tip-7-the-difference-between-run-and-cmd#:~:text=RUN%20and%20CMD%20are%20both,image%20as%20a%20new%20layer.&text=CMD%20lets%20you%20define%20a,run%20when%20your%20container%20starts.)
 
 #### `RUN cd` vs `WORKDIR`

@@ -558,3 +558,53 @@ In order to create a swarm you need to ssh into a machine you intend to make int
 
 **Docker for Mac and Docker for Windows** - separate tools that simplify developing with docker on Mac or Windows.[Reference](https://www.freecodecamp.org/news/comprehensive-introductory-guide-to-docker-vms-and-containers-4e42a13ee103/)
 
+## QA & Troubleshooting
+	
+#### [How to automatically start a service when running a docker container?](https://stackoverflow.com/questions/25135897/how-to-automatically-start-a-service-when-running-a-docker-container)
+
+First, there is a **problem** in your `Dockerfile`:
+
+```
+RUN service mysql restart && /tmp/setup.sh
+
+```
+
+Docker images do not save running processes. Therefore, your `RUN` command executes only during `docker build` phase and stops after the build is completed. Instead, you need to specify the command when the container is started using the `CMD` or `ENTRYPOINT` commands like below:
+
+```
+CMD mysql start
+
+```
+
+Secondly, the docker container needs a process (last command) to keep running, otherwise the container will exit/stop. Therefore, the normal `service mysql start` command cannot be used directly in the Dockerfile.
+
+**Solution**
+	
+There are three typical ways to keep the process running:
+
+- Using `service` command and append non-end command after that like `tail -F`
+
+    ```
+    CMD service mysql start && tail -F /var/log/mysql/error.log
+
+    ```
+
+This is often preferred when you have a single service running as it makes the outputted log accessible to docker.
+
+- Or use foreground command to do this
+
+    ```
+    CMD /usr/bin/mysqld_safe
+
+    ```
+
+This works only if there is a script like `mysqld_safe`.
+
+- Or wrap your scripts into `start.sh` and put this in end
+
+    ```
+    CMD /start.sh
+
+    ```
+
+This is best if the command must perform a series of steps, again, `/start.sh` should stay running.
